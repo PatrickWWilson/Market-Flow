@@ -1,4 +1,4 @@
-"""Main Streamlit application for MarketFlow."""
+"""Main Streamlit application for MarketFlow Signals."""
 
 import streamlit as st
 from cryptoData import dataFetcher
