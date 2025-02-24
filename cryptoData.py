@@ -15,7 +15,7 @@ class CryptoDataFetcher:
             'enableRateLimit': True,
         })
 
-    def fetchOhlcvData(self, symbol: str, timeframe: str = '1d', limit: int = 30) -> Optional[pd.DataFrame]:
+    def fetchMarketData(self, symbol: str, timeframe: str = '1d', limit: int = 30) -> Optional[pd.DataFrame]:
         """Fetch OHLCV data for a given symbol and timeframe."""
         try:
             ohlcv = self.exchange.fetch_ohlcv(symbol, timeframe=timeframe, limit=limit)
@@ -34,7 +34,7 @@ class CryptoDataFetcher:
 
     def extractFeatures(self, symbol: str) -> Tuple[List[float], pd.Series]:
         """Extract quantitative features and 7-day price trend from OHLCV data."""
-        df = self.fetchOhlcvData(symbol)
+        df = self.fetchMarketData(symbol)
         if df is None or df.empty:
             return [np.nan] * 5, pd.Series()
 
